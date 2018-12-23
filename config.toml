@@ -1,0 +1,9 @@
+baseURL = "https://hr8yfeyn.com/"
+languageCode = "ja-JP"
+title = "hr8yFEYN"
+hasCJKLanguage = true
+summarylength = 150
+publishDir = "docs"
+
+[taxonomies]
+tag = "tags"

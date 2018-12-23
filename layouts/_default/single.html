@@ -1,0 +1,48 @@
+{{ partial "header.html" . }}
+
+    <article>
+      <header class="entry-header">
+        <span class="entry-date">{{ dateFormat "2006-01-02" .Date }}</span>
+        <h1 class="entry-title">{{ .Title }}</h1>
+
+        {{ $taxo := "tags" }} <!-- Use the plural form here -->
+        {{ with .Param $taxo }}
+        <div class="tags_list">
+          {{ range $index, $tag := . }}
+            {{- if gt $index 0 }} <span style="color:rgb(200,200,200)">|</span> {{ end -}}
+            <a href="/{{ $taxo }}/{{ $tag }}/">{{ $tag }}</a>
+          {{- end -}}
+        </div>
+        {{ end }}
+      </header>
+
+      {{ if .Params.toc }}
+      <aside>
+        {{ .TableOfContents }}
+      </aside>
+      {{ end }}
+
+      <div class="entry-content clearfix">
+        {{ .Content }}
+      </div>
+    </article>
+
+    <nav class="pagination">
+        {{ with .NextInSection }}
+        <div class="prev-page">
+        <span style="font-size:80%;font-weight:bold">新しい記事({{ dateFormat "2006-01-02" .Date }})</span><br>
+        <a class="next" href="{{.Permalink}}">{{ .Title }}</a>
+        </div>
+        {{ end }}
+
+        <br>
+
+        {{ with .PrevInSection }}
+        <div class="prev-page">
+        <span style="font-size:80%;font-weight:bold">古い記事({{ dateFormat "2006-01-02" .Date }})</span><br>
+        <a class="next" href="{{.Permalink}}">{{ .Title }}</a>
+        </div>
+        {{ end }}
+    </nav>
+
+{{ partial "footer.html" . }}

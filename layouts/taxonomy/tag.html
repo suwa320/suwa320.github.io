@@ -1,0 +1,20 @@
+{{ partial "header.html" . }}
+
+<article>
+  <header class="entry-header">
+    <h1 class="entry-title">{{ .Title }}</h1>
+  </header>
+
+  <section class="entry-content">
+    <ul id="list">
+    {{ range .Data.Pages }}
+    <li>
+    {{ .Date.Format "2006-01-02" }}
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+    {{ end }}
+    </ul>
+  </section>
+</article>
+
+{{ partial "footer.html" . }}

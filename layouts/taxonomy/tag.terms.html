@@ -1,0 +1,23 @@
+{{ partial "header.html" . }}
+
+<article>
+  <header class="entry-header">
+    <h1 class="entry-title">{{ .Title }}</h1>
+  </header>
+
+  <section class="entry-content">
+    <ul>
+    {{ $type := .Type }}
+    {{ range $key, $value := .Data.Terms.ByCount }}
+      {{ $name := .Name }}
+      {{ $count := .Count }}
+      <li>
+        <a href="/{{ $type }}/{{ $name }}/">{{ $name }}</a>
+        <a href="/{{ $type }}/{{ $name }}/"><span class="tags_number">{{ $count }}</span></a>
+      </li>
+    {{ end }}
+    </ul>
+  </section>
+</article>
+
+{{ partial "footer.html" . }}

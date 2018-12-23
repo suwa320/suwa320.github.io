@@ -1,0 +1,11 @@
+<li>
+    <span class="date">{{ .Date.Format "2006-01-02" }}</span><br>
+    <span class="title"><a href="{{ .Permalink }}">{{ .Title }}</a></span><br>
+    <p>
+    {{ if .Params.key_image }}
+      <img src="{{ .Params.key_image }}" width="120" height="90" alt="{{ .Title  }}">
+    {{ end }}
+    {{ .Summary }}{{ if .Truncated }}...{{ end }}
+    </p>
+</li>
+

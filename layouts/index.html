@@ -1,0 +1,32 @@
+{{ partial "header.html" . }}
+
+        <article>
+            <ul class="page_list">
+                {{ range (.Paginator 20).Pages }}
+                    {{ .Render "list" }}
+                {{ end }}
+            </ul>
+        </article>
+
+        {{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
+            <nav class="pagination">
+            {{ if .Paginator.HasPrev }}
+                <a href="{{ .Paginator.Prev.URL }}">新しい記事</a>
+            {{ else }}
+                <span class="" style="color:#ccc">新しい記事</span>
+            {{ end }}
+            |
+
+
+            <span class="current-page">{{ .Paginator.PageNumber }} / {{ .Paginator.TotalPages }}</span>
+
+            |
+            {{ if .Paginator.HasNext }}
+                <a href="{{ .Paginator.Next.URL }}">古い記事</a>
+            {{ else }}
+                <span class="" style="color:#ccc">古い記事</span>
+            {{ end }}
+            </nav>
+        {{ end }}
+
+{{ partial "footer.html" . }}

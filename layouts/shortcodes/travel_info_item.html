@@ -1,0 +1,40 @@
+{{ if .IsNamedParams }}
+  {{ $.Scratch.Add "image" ( .Get "img") }}
+  {{ $.Scratch.Add "link" ( .Get "link") }}
+  {{ $.Scratch.Add "alt" ( .Get "alt") }}
+{{ else }}
+  {{ $.Scratch.Add "image" (.Get 0) }}
+  {{ $.Scratch.Add "link" (.Get 1) }}
+  {{ $.Scratch.Add "alt" (.Get 2) }}
+{{ end }}
+
+{{ $image := $.Scratch.Get "image" }}
+{{ $link := $.Scratch.Get "link" }}
+{{ $alt := $.Scratch.Get "alt" }}
+
+{{ if $image }}
+<div class="travel_info_item_with_image">
+
+<div class="image">
+{{ if $link }}
+<a href="{{ $link }}"><img src="{{ $image }}" alt="{{ $alt }}"></a>
+{{ else }}
+<a href="{{ $image }}"><img src="{{ $image }}"></a>
+{{ end }}
+</div>
+<div class="body">
+  {{ .Inner }}
+</div>
+
+</div>
+
+
+{{ else }}
+
+<div class="travel_info_item">
+<div class="body">
+{{ .Inner }}
+</div>
+</div>
+
+{{ end }}
